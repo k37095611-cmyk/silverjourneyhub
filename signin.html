@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Silver Journey Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #2c1810;
+            --primary-gold: #d4a574;
+            --secondary-brown: #3d2817;
+            --light-bg: #f5f1ed;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-family: 'Palatino', serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding: 2rem;
+        }
+
+        .signin-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            color: var(--text-light);
+        }
+
+        .signin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .signin-header h1 {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .signin-header p {
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .remember-forgot a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .remember-forgot a:hover {
+            opacity: 0.8;
+        }
+
+        .signin-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .signin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .signup-link p {
+            opacity: 0.85;
+        }
+
+        .signup-link a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            opacity: 0.8;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            opacity: 0.5;
+        }
+
+        .social-signin {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            background: rgba(212, 165, 116, 0.15);
+            border-color: var(--primary-gold);
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .signin-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .signin-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌟 Silver Journey Hub</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="signin-container">
+            <div class="signin-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your Silver Journey account</p>
+            </div>
+
+            <form id="signinForm" onsubmit="handleSignin(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="remember-forgot">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" name="remember" style="width: auto; margin: 0;">
+                        Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="signin-btn">Sign In</button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="social-signin">
+                <button class="social-btn" onclick="handleSocialSignin('google')">🔵 Google</button>
+                <button class="social-btn" onclick="handleSocialSignin('facebook')">👥 Facebook</button>
+            </div>
+
+            <div class="signup-link">
+                <p>Don't have an account? <a href="#">Create one now</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Silver Journey Hub. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+
+    <script>
+        function handleSignin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            alert(`Sign in attempt with: ${email}\n\nThis is a demo. In production, this would authenticate with your backend.`);
+        }
+
+        function handleSocialSignin(provider) {
+            alert(`Sign in with ${provider.toUpperCase()}\n\nThis is a demo. In production, this would use OAuth.`);
+        }
+    </script>
+</body>
+</html>

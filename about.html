@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Silver Journey Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #2c1810;
+            --primary-gold: #d4a574;
+            --secondary-brown: #3d2817;
+            --light-bg: #f5f1ed;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-family: 'Palatino', serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.9), rgba(61, 40, 23, 0.9)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=300&fit=crop') center/cover;
+            color: var(--text-light);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .content-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-member-info h3 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-info p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .value-card h3 {
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-gold), rgba(212, 165, 116, 0.8));
+            color: var(--primary-dark);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-dark);
+            color: var(--primary-gold);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌟 Silver Journey Hub</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="hero">
+            <h1>About Silver Journey Hub</h1>
+            <p>Empowering seniors to live their best lives through enriching experiences, community, and resources</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Mission</h2>
+            <p>Silver Journey Hub was founded with a simple but powerful mission: to transform the senior living experience by providing comprehensive resources, vibrant communities, and enriching opportunities for active, engaged adults over 55.</p>
+            <p>We believe that this chapter of life should be filled with adventure, growth, meaningful connections, and purpose. Our platform connects seniors with travel opportunities, wellness programs, social connections, and financial planning resources designed specifically for their unique needs and aspirations.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Story</h2>
+            <p>Silver Journey Hub was born from conversations with active seniors who wanted more from life than traditional retirement communities offered. Our founders recognized a gap in the market for a platform that treats seniors as the vibrant, engaged individuals they are—people who want to travel, stay healthy, build relationships, and take smart financial decisions.</p>
+            <p>What started as a small project has grown into a trusted resource serving thousands of seniors across the country, offering expert guidance, vetted service providers, and a supportive community that celebrates this wonderful season of life.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="Sarah Johnson - Founder & CEO">
+                    <div class="team-member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Michael Chen - Director of Travel">
+                    <div class="team-member-info">
+                        <h3>Michael Chen</h3>
+                        <p>Director of Travel</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Elena Rodriguez - Wellness Director">
+                    <div class="team-member-info">
+                        <h3>Elena Rodriguez</h3>
+                        <p>Wellness Director</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>🤝 Community</h3>
+                    <p>We foster genuine connections and meaningful relationships among seniors who share similar interests and values.</p>
+                </div>
+                <div class="value-card">
+                    <h3>🌟 Empowerment</h3>
+                    <p>We provide tools, knowledge, and resources to help seniors make informed decisions about their lives.</p>
+                </div>
+                <div class="value-card">
+                    <h3>✅ Trust</h3>
+                    <p>We thoroughly vet all service providers and maintain transparent, honest communication with our members.</p>
+                </div>
+                <div class="value-card">
+                    <h3>🎯 Excellence</h3>
+                    <p>We maintain high standards in every service, experience, and interaction with our community members.</p>
+                </div>
+                <div class="value-card">
+                    <h3>🌍 Inclusion</h3>
+                    <p>We welcome seniors from all backgrounds and create accessible experiences for everyone.</p>
+                </div>
+                <div class="value-card">
+                    <h3>💡 Innovation</h3>
+                    <p>We continuously seek new ways to improve our platform and services based on member feedback.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Join Our Community</h2>
+            <p>Become part of a vibrant community of active, engaged seniors exploring new horizons.</p>
+            <a href="signin.html" class="cta-btn">Get Started Today</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Silver Journey Hub. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+</body>
+</html>

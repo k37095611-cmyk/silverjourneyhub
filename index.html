@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Journey Hub - Senior Living Resources</title>
+    <!-- Google Ads Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-XXXXXXXXXXXXXX",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #2c1810;
+            --primary-gold: #d4a574;
+            --secondary-brown: #3d2817;
+            --light-bg: #f5f1ed;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Google Ads Container */
+        .ads-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 2rem;
+        }
+
+        .ad-unit {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-family: 'Palatino', serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.9), rgba(61, 40, 23, 0.9)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop') center/cover;
+            color: var(--text-light);
+            padding: 8rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-gold);
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 3rem;
+            font-family: 'Palatino', serif;
+            letter-spacing: 1px;
+        }
+
+        .orb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .orb {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .orb:hover {
+            transform: translateY(-10px);
+            background: rgba(212, 165, 116, 0.15);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 40px rgba(212, 165, 116, 0.2);
+        }
+
+        .orb-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .orb h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .orb p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        /* Sign-in Popup */
+        .signin-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            animation: fadeIn 0.5s ease forwards;
+            cursor: pointer;
+        }
+
+        .signin-popup.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signin-popup-content {
+            background: var(--light-bg);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            padding: 2.5rem;
+            position: relative;
+            cursor: default;
+            animation: slideIn 0.5s ease forwards;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px) scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .signin-popup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .signin-popup-header h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .signin-popup-header p {
+            color: var(--secondary-brown);
+            font-size: 0.9rem;
+        }
+
+        .signin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--primary-dark);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+        }
+
+        .signin-submit-btn {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            margin-top: 0.5rem;
+        }
+
+        .signin-submit-btn:hover {
+            background: var(--secondary-brown);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        .signin-popup-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--secondary-brown);
+        }
+
+        .signin-popup-footer a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signin-popup-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .signin-popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            color: #f9eee3;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 3001;
+        }
+
+        .signin-popup-close:hover {
+            background: #f9eee3;
+            color: var(--primary-gold);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-dark);
+            background: none;
+            border: none;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-gold);
+        }
+
+        .modal-title {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .modal-body {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .modal-body h4 {
+            color: var(--primary-gold);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body ul, .modal-body ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-family: 'Palatino', serif;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .orb-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 0 1rem;
+            }
+
+            .signin-popup-content {
+                padding: 2rem;
+            }
+            
+            .ads-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Ads Top Banner -->
+    <!-- <div class="ads-container">
+        <div class="ad-unit">
+            <div class="ad-label">Advertisement</div>
+            Google AdSense Ad Unit
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div> -->
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌟 Silver Journey Hub</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Silver Journey Hub</h1>
+        <p>Your Gateway to Enriched Senior Living</p>
+        <a href="#main-content" class="cta-button">Explore Now</a>
+    </header>
+
+  
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Travel Section -->
+        <section class="section">
+            <h2 class="section-title">✈️ Travel & Adventures</h2>
+            <div class="orb-grid" id="travelGrid"></div>
+        </section>
+
+        <!-- Google Ads In-content -->
+        <!-- <div class="ads-container">
+            <div class="ad-unit">
+                <div class="ad-label">Recommended For You</div> -->
+                <!-- Google AdSense Ad Unit -->
+                <!-- <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+                     data-ad-slot="1122334455"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div> -->
+
+        <!-- Yoga Section -->
+        <section class="section">
+            <h2 class="section-title">🧘 Yoga & Wellness</h2>
+            <div class="orb-grid" id="yogaGrid"></div>
+        </section>
+
+        <!-- Dating Section -->
+        <section class="section">
+            <h2 class="section-title">💕 Dating & Relationships</h2>
+            <div class="orb-grid" id="datingGrid"></div>
+        </section>
+
+        <!-- Downsizing Section -->
+        <section class="section">
+            <h2 class="section-title">🏡 Downsizing & Decluttering</h2>
+            <div class="orb-grid" id="downsizingGrid"></div>
+        </section>
+
+        <!-- Crypto Section -->
+        <section class="section">
+            <h2 class="section-title">₿ Digital Wealth & Crypto</h2>
+            <div class="orb-grid" id="cryptoGrid"></div>
+        </section>
+    </main>
+
+   
+
+    <!-- Sign-in Popup -->
+    <div class="signin-popup" id="signinPopup">
+        <div class="signin-popup-content">
+            <button class="signin-popup-close" id="signinPopupClose">&times;</button>
+            <div class="signin-popup-header">
+                <h3>Welcome Back</h3>
+                <p>Sign in to access personalized senior living resources</p>
+            </div>
+            <form class="signin-form" id="signinForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="signin-submit-btn">Sign In</button>
+            </form>
+            <div class="signin-popup-footer">
+                <p>Don't have an account? <a href="signin.html">Sign up here</a></p>
+                <p>Forgot your password? <a href="signin.html">Reset it</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="signin.html">Sign In</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="contact.html">Get Help</a>
+                <a href="about.html">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="mailto:hello@silverjournehub.com">Email Us</a>
+                <!-- <p>📞 1-800-SILVER-1</p> -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Silver Journey Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const travelData = [
+            { title: "European Escapes", icon: "🏰", content: "<h4>Discover Historic Europe</h4><p>Explore the timeless charm of European capitals, from the romance of Paris to the history of Rome.</p><h4>Highlights:</h4><ul><li>12-day guided tours</li><li>5-star accommodations</li><li>All meals included</li><li>Shore excursions</li></ul><h4>Price:</h4><p>Starting at $3,499</p>" },
+            { title: "Caribbean Cruises", icon: "⛴️", content: "<h4>Tropical Paradise Awaits</h4><p>Relax on pristine beaches and explore vibrant island cultures on luxury cruises.</p><h4>Highlights:</h4><ul><li>All-inclusive packages</li><li>Onboard entertainment</li><li>Water activities</li><li>Premium dining</li></ul><h4>Price:</h4><p>Starting at $2,299</p>" },
+            { title: "African Safari", icon: "🦁", content: "<h4>Wildlife Adventure</h4><p>Witness the majesty of African wildlife on curated safari experiences across national reserves.</p><h4>Highlights:</h4><ul><li>Expert guides</li><li>Game drives</li><li>Luxury lodges</li><li>Photography tours</li></ul><h4>Price:</h4><p>Starting at $4,499</p>" },
+            { title: "Asian Wonders", icon: "🏯", content: "<h4>Cultural Immersion</h4><p>Discover ancient temples, bustling markets, and serene landscapes across Asia.</p><h4>Highlights:</h4><ul><li>Guided cultural tours</li><li>Cooking classes</li><li>Temple visits</li><li>Wellness retreats</li></ul><h4>Price:</h4><p>Starting at $3,199</p>" },
+            { title: "Mediterranean Coast", icon: "🌊", content: "<h4>Seaside Elegance</h4><p>Enjoy coastal charm with visits to Greece, Italy, and southern France.</p><h4>Highlights:</h4><ul><li>Beachside hotels</li><li>Wine tastings</li><li>Local cuisine</li><li>Scenic drives</li></ul><h4>Price:</h4><p>Starting at $2,899</p>" },
+            { title: "Alaska Expedition", icon: "❄️", content: "<h4>Natural Wonders</h4><p>Experience glaciers, wildlife, and pristine wilderness in America's last frontier.</p><h4>Highlights:</h4><ul><li>Glacier cruises</li><li>Dog sledding</li><li>Wildlife viewing</li><li>Lodge stays</li></ul><h4>Price:</h4><p>Starting at $3,799</p>" }
+        ];
+
+        const yogaData = [
+            { title: "Beginner Hatha", icon: "🧘", content: "<h4>Build Your Foundation</h4><p>Learn fundamental yoga poses and breathing techniques in a gentle, supportive environment.</p><h4>Benefits:</h4><ul><li>Improved flexibility</li><li>Better posture</li><li>Stress relief</li><li>Enhanced circulation</li></ul><h4>Duration:</h4><p>60 min classes, $15/class</p>" },
+            { title: "Restorative Yoga", icon: "🕉️", content: "<h4>Deep Relaxation</h4><p>Gentle poses with props to support deep relaxation and stress recovery.</p><h4>Benefits:</h4><ul><li>Pain relief</li><li>Better sleep</li><li>Mental clarity</li><li>Emotional balance</li></ul><h4>Duration:</h4><p>90 min classes, $18/class</p>" },
+            { title: "Balance & Stability", icon: "⚖️", content: "<h4>Prevent Falls</h4><p>Specialized classes focusing on improving balance, proprioception, and core strength.</p><h4>Benefits:</h4><ul><li>Fall prevention</li><li>Better coordination</li><li>Stronger bones</li><li>Confidence building</li></ul><h4>Duration:</h4><p>45 min classes, $12/class</p>" },
+            { title: "Breathing & Meditation", icon: "💨", content: "<h4>Calm the Mind</h4><p>Master pranayama techniques and guided meditation for mental clarity and peace.</p><h4>Benefits:</h4><ul><li>Reduced anxiety</li><li>Lower blood pressure</li><li>Better focus</li><li>Emotional resilience</li></ul><h4>Duration:</h4><p>45 min classes, $12/class</p>" },
+            { title: "Arthritis Relief", icon: "💪", content: "<h4>Joint-Friendly Poses</h4><p>Specially designed sequences to improve joint mobility and reduce inflammation.</p><h4>Benefits:</h4><ul><li>Less joint pain</li><li>Improved mobility</li><li>Greater flexibility</li><li>Stronger support muscles</li></ul><h4>Duration:</h4><p>60 min classes, $15/class</p>" },
+            { title: "Chair Yoga", icon: "🪑", content: "<h4>Convenient & Accessible</h4><p>Full yoga practice performed seated or using chairs for support and safety.</p><h4>Benefits:</h4><ul><li>Anywhere, anytime</li><li>Safe for all levels</li><li>Builds strength</li><li>Easy on joints</li></ul><h4>Duration:</h4><p>45 min classes, $10/class</p>" }
+        ];
+
+        const datingData = [
+            { title: "Silver Matchmaking", icon: "💕", content: "<h4>Professional Matching</h4><p>Our experts carefully match compatible seniors based on values, interests, and life goals.</p><h4>Services:</h4><ul><li>Personalized profiles</li><li>Expert matching</li><li>Video introductions</li><li>Dating coaching</li></ul><h4>Cost:</h4><p>$99/month membership</p>" },
+            { title: "Speed Dating Events", icon: "⏱️", content: "<h4>Meet & Connect</h4><p>Fun, fast-paced events in a safe, supportive environment to meet new people.</p><h4>Features:</h4><ul><li>5-minute conversations</li><li>Social mixer afterward</li><li>Complimentary refreshments</li><li>Safe environment</li></ul><h4>Cost:</h4><p>$35 per event</p>" },
+            { title: "Social Groups", icon: "👥", content: "<h4>Make Friends First</h4><p>Join interest-based groups for hiking, dining, games, and cultural activities.</p><h4>Groups Include:</h4><ul><li>Book clubs</li><li>Dining clubs</li><li>Adventure groups</li><li>Arts & culture</li></ul><h4>Cost:</h4><p>Free to join</p>" },
+            { title: "Dating Coaching", icon: "🎓", content: "<h4>Expert Guidance</h4><p>One-on-one coaching to refresh your dating skills and build confidence.</p><h4>Includes:</h4><ul><li>Profile optimization</li><li>Conversation tips</li><li>First date advice</li><li>6 sessions</li></ul><h4>Cost:</h4><p>$299 for 6 sessions</p>" },
+            { title: "Travel Companion Matching", icon: "🌍", content: "<h4>Adventure Together</h4><p>Find compatible travel companions for group trips and vacation experiences.</p><h4>Features:</h4><ul><li>Interest matching</li><li>Budget alignment</li><li>Group coordination</li><li>Trip planning help</li></ul><h4>Cost:</h4><p>$49/year membership</p>" },
+            { title: "Wellness Dates", icon: "🏃", content: "<h4>Active Connections</h4><p>Join fitness-focused dating events: hiking, yoga classes, and wellness workshops.</p><h4>Activities:</h4><ul><li>Group hiking</li><li>Walking tours</li><li>Yoga classes</li><li>Wellness talks</li></ul><h4>Cost:</h4><p>$25-45 per event</p>" }
+        ];
+
+        const downsizingData = [
+            { title: "Senior Move Managers", icon: "📦", content: "<h4>Professional Downsizing</h4><p>Expert planners who guide you through every aspect of downsizing your home.</p><h4>Services:</h4><ul><li>Space planning</li><li>Decluttering</li><li>Packing coordination</li><li>Donation services</li></ul><h4>Cost:</h4><p>Hourly rates from $50-75</p>" },
+            { title: "Estate Liquidators", icon: "🎨", content: "<h4>Sell Your Items</h4><p>Professional evaluation and selling of antiques, furniture, and collectibles.</p><h4>Services:</h4><ul><li>Item appraisals</li><li>Online auctions</li><li>Local sales</li><li>Bulk removal</li></ul><h4>Cost:</h4><p>20-40% commission on sales</p>" },
+            { title: "Organization Experts", icon: "📋", content: "<h4>Space Optimization</h4><p>Creative solutions to maximize space and organization in smaller homes.</p><h4>Services:</h4><ul><li>Layout planning</li><li>Storage solutions</li><li>Style consultation</li><li>Organizing systems</li></ul><h4>Cost:</h4><p>$45-60/hour</p>" },
+            { title: "Digital Transition Help", icon: "💾", content: "<h4>Digital Decluttering</h4><p>Organize and digitize important documents, photos, and digital files.</p><h4>Services:</h4><ul><li>Document scanning</li><li>Photo digitization</li><li>File organization</li><li>Cloud setup</li></ul><h4>Cost:</h4><p>$40-55/hour</p>" },
+            { title: "Donation Services", icon: "🤝", content: "<h4>Give Back Responsibly</h4><p>Find reputable charities and handle donation logistics efficiently.</p><h4>Services:</h4><ul><li>Charity matching</li><li>Pickup coordination</li><li>Tax documentation</li><li>Transparency tracking</li></ul><h4>Cost:</h4><p>Free consultation</p>" },
+            { title: "Real Estate Transition", icon: "🏠", content: "<h4>Smooth Home Selling</h4><p>Navigate home sales with experts who understand senior relocation needs.</p><h4>Services:</h4><ul><li>Home staging</li><li>Realtor matching</li><li>Timing planning</li><li>Moving coordination</li></ul><h4>Cost:</h4><p>Standard real estate commission</p>" }
+        ];
+
+        const cryptoData = [
+            { title: "Crypto 101 Workshops", icon: "📚", content: "<h4>Master the Basics</h4><p>Learn what cryptocurrency is, how it works, and how to stay safe in the digital economy.</p><h4>Topics:</h4><ul><li>Blockchain basics</li><li>Bitcoin & Ethereum</li><li>Digital wallets</li><li>Security practices</li></ul><h4>Cost:</h4><p>$199 for 4 workshops</p>" },
+            { title: "Investment Strategies", icon: "📈", content: "<h4>Smart Digital Investing</h4><p>Develop age-appropriate crypto investment strategies with conservative approaches.</p><h4>Includes:</h4><ul><li>Risk assessment</li><li>Portfolio building</li><li>Diversification tips</li><li>Monthly updates</li></ul><h4>Cost:</h4><p>$299/month advisor</p>" },
+            { title: "Scam Prevention", icon: "🛡️", content: "<h4>Protect Your Assets</h4><p>Essential knowledge about common crypto scams and how to avoid them.</p><h4>Covers:</h4><ul><li>Phishing tactics</li><li>Fake investments</li><li>Security verification</li><li>Reporting mechanisms</li></ul><h4>Cost:</h4><p>Free webinar series</p>" },
+            { title: "Digital Wallet Setup", icon: "💳", content: "<h4>Secure Storage</h4><p>Expert guidance on setting up and maintaining secure digital wallets.</p><h4>Services:</h4><ul><li>Hardware wallets</li><li>Cold storage setup</li><li>Backup procedures</li><li>Access protocols</li></ul><h4>Cost:</h4><p>$150 for setup service</p>" },
+            { title: "Tax & Legal", icon: "⚖️", content: "<h4>Compliance Guidance</h4><p>Understand crypto tax implications and legal considerations for seniors.</p><h4>Includes:</h4><ul><li>Tax reporting</li><li>Form guidance</li><li>Legal reviews</li><li>Estate planning</li></ul><h4>Cost:</h4><p>$250/consultation</p>" },
+            { title: "Wealth Transfer Planning", icon: "👨‍👩‍👧", content: "<h4>Legacy & Inheritance</h4><p>Plan how to securely transfer digital assets to heirs and beneficiaries.</p><h4>Services:</h4><ul><li>Will documentation</li><li>Heir access setup</li><li>Account recovery</li><li>Legacy trusts</li></ul><h4>Cost:</h4><p>$400 for full plan</p>" }
+        ];
+
+        const allData = { travel: travelData, yoga: yogaData, dating: datingData, downsizing: downsizingData, crypto: cryptoData };
+
+        // Render Orbs
+        function renderOrbs(containerId, data) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = data.map((item, idx) => `
+                <div class="orb" onclick="openModal('${item.title.replace(/'/g, "\\'")}', '${item.content.replace(/'/g, "\\'")}')">
+                    <span class="orb-icon">${item.icon}</span>
+                    <h3>${item.title}</h3>
+                    <p>Learn more about this opportunity</p>
+                </div>
+            `).join('');
+        }
+
+        renderOrbs('travelGrid', travelData);
+        renderOrbs('yogaGrid', yogaData);
+        renderOrbs('datingGrid', datingData);
+        renderOrbs('downsizingGrid', downsizingData);
+        renderOrbs('cryptoGrid', cryptoData);
+
+        // Modal Functions
+        function openModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').innerHTML = content;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) closeModal();
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Sign-in Popup Functionality
+        const signinPopup = document.getElementById('signinPopup');
+        const signinPopupClose = document.getElementById('signinPopupClose');
+        const signinForm = document.getElementById('signinForm');
+        const signinPopupContent = document.querySelector('.signin-popup-content');
+        let popupTimeout;
+
+        // Function to redirect to signin page
+        function redirectToSignIn() {
+            window.location.href = 'signin.html';
+        }
+
+        // Function to close the popup (only when X button is clicked)
+        function closeSigninPopup() {
+            signinPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Clear any existing timeout
+            if (popupTimeout) {
+                clearTimeout(popupTimeout);
+            }
+        }
+
+        // Function to show the popup
+        function showSigninPopup() {
+            signinPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Set timeout to show popup after 35 seconds
+        popupTimeout = setTimeout(showSigninPopup, 5000);
+
+        // Close button click handler - simply closes the popup
+        signinPopupClose.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
+            closeSigninPopup();
+        });
+
+        // Form submit handler - redirects to signin page
+        signinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            redirectToSignIn();
+        });
+
+        // Click ANYWHERE on the popup (including dark overlay) EXCEPT the X button redirects to signin
+        signinPopup.addEventListener('click', function(e) {
+            // If clicking on the X button, do nothing (handled above)
+            if (e.target === signinPopupClose || signinPopupClose.contains(e.target)) {
+                return;
+            }
+            
+            // If clicking anywhere else on the popup, redirect to signin
+            redirectToSignIn();
+        });
+
+        // Also handle clicks on the form content (but exclude form inputs and submit button)
+        signinPopupContent.addEventListener('click', function(e) {
+            // If clicking on form inputs or buttons, let the form handle it
+            if (e.target.matches('input') || e.target.matches('button') || e.target.matches('a')) {
+                return;
+            }
+            
+            // If clicking on the form content area, redirect to signin
+            redirectToSignIn();
+        });
+
+        // Clear timeout if user navigates away before popup shows
+        window.addEventListener('beforeunload', function() {
+            clearTimeout(popupTimeout);
+        });
+
+        // Initialize Google Ads after page load
+        window.addEventListener('load', function() {
+            // Re-push ads if needed
+            if (window.adsbygoogle) {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        });
+    </script>
+</body>
+</html>
